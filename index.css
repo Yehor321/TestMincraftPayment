@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+body{
+    background-color: black;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 5vh;
+    padding: 5px;
+    border-bottom: white 1px solid;
+}
+user{
+    display: flex;
+    align-items: center;
+}
+.header__user_logo{
+    background-color: yellow;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.header__user_name{
+    color: white;
+}
+main{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.testBox{
+    margin-top: 5%;
+    width: 150px;
+    height: 150px;
+    background-color: rgb(109, 109, 144);
+}
