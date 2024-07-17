@@ -10,26 +10,48 @@
 
     <header>
         <user>
-            <div class="header__user_logo"></div> 
+            <div  class="header__user_logo"></div> 
             <div class="header__user_name">User name</div>
         </user>
         <button>Home</button>
     </header>
 
     <main>
-        <div class="testBox"></div>
-        <div class="testBox"></div>
-        <div class="testBox"></div>
-        <div class="testBox"></div>
-        <div class="testBox"></div>
-        <div class="testBox"></div>
+        <div onclick="AnimationBox(event)" class="testBox">
+            <img src="./img/Group1.png" alt="">
+            <p class="demoQWE"></p>
+            <h3 class="demoPrice"></h3>
+        </div>
+        <div onclick="AnimationBox(event)" class="testBox">
+            <img src="./img/Group1.png" alt="">
+            <p class="demoQWE"></p>
+            <h3 class="demoPrice"></h3>
+        </div>
     </main>
 
     <script>
+
+        async function getData() {
+        const url = "https://www.dropbox.com/preview/Text%20Document%20(2).txt?context=content_suggestions&role=personal";
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+            }
+
+            const json = await response.json();
+            console.log(json);
+        } catch (error) {
+            console.error(error.message);
+        }
+        }
+
+        getData()
+
         const DataGoods = [
             {
                 img: "./img/Group1.png",
-                description: "test1 API img",
+                description: "dolor sit amet consectetur adipisicing elit. Quo et quas eaque cumque necessitatibus voluptates odit laudantium? Commodi tenetur expedita, qui placeat impedit, consequatur accusantium facere perferendis temporibus, laborum non.",
                 price: "100$"
             },
             {
@@ -39,8 +61,63 @@
             },
         ];
 
-        function 
+        function DrawBoxGoods(dataArray){
+            const main = document.createElement('main')
+            dataArray.forEach(Element => {
+
+                const div = document.createElement('div')
+                div.className = 'testBox'
+                
+                const p = document.createElement('p')
+                p.className = 'demoQWE'
+
+                const h3 = document.createElement('h3')
+                h3.className = 'demoPrice'
+                
+                div.onclick = (event) => AnimationBox(event)
+                const img = document.createElement('img')
+                img.src = Element.img
+                img.alt = Element.price
+
+                main.appendChild(div)
+                div.appendChild(img)
+                div.appendChild(p)
+                div.appendChild(h3)
+            });
+            document.body.appendChild(main)
+        }
+
+        // DrawBoxGoods(DataGoods)
+
+        let cheche = true
+
+        function AnimationBox(event){
+            const pElement = event.currentTarget.querySelector('.demoQWE')
+            const h3Element = event.currentTarget.querySelector('.demoPrice')
+            const index = Array.from(event.currentTarget.parentNode.children).indexOf(event.currentTarget)
+            if(cheche){
+                // main.classList.add()
+                event.currentTarget.classList.add('qwer')
+                pElement.innerHTML = DataGoods[index].description;
+                h3Element.innerHTML = DataGoods[index].price;
+                cheche = false
+            }else{
+                event.currentTarget.classList.remove('qwer')
+                pElement.innerHTML = " ";
+                h3Element.innerHTML = " ";
+                cheche = true
+            }
+        }
+
+
     </script>
 
 </body>
 </html>
+
+<!-- <div onclick="AnimationBox(event)" class="testBox">
+    <img src="./img/Group1.png" alt="">
+    <p class="demoQWE"></p>
+    <h3 class="demoPrice"></h3>
+</div> -->
+
